@@ -1,0 +1,1953 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Global Fish Market: Investment Analysis with Focus on East Africa and Somalia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1e3a8a',
+                        'secondary': '#059669',
+                        'accent': '#7c3aed',
+                        'neutral': '#374151',
+                        'surface': '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            overflow-x: hidden;
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 280px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+        .toc-fixed a {
+            transition: all 0.2s ease;
+        }
+        .toc-fixed a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(4px);
+        }
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .hero-title {
+            grid-column: 1 / -1;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-visual {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        .hero-highlights {
+            grid-column: 2;
+            grid-row: 2;
+        }
+        .citation-link {
+            color: #059669;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #059669;
+            transition: all 0.2s ease;
+        }
+        .citation-link:hover {
+            color: #047857;
+            border-bottom-style: solid;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-left: 4px solid #059669;
+        }
+        @media (max-width: 1024px) {
+            .toc-fixed {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            .toc-fixed.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+            .hero-visual {
+                grid-column: 1;
+                grid-row: 2;
+            }
+            .hero-highlights {
+                grid-column: 1;
+                grid-row: 3;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-title h1 {
+                font-size: 2.25rem;
+            }
+            .hero-title p {
+                font-size: 1rem;
+            }
+            .hero-visual img {
+                height: 12rem;
+            }
+            .hero-highlights .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Mermaid controls for small screens */
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        /* Mermaid Chart Styles */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+    </style>
+  </head>
+
+  <body class="bg-surface text-neutral font-sans leading-relaxed">
+    <!-- Table of Contents -->
+    <nav class="toc-fixed text-white">
+      <div class="mb-8">
+        <h2 class="font-serif text-xl font-bold mb-2">Contents</h2>
+        <div class="w-12 h-0.5 bg-secondary"></div>
+      </div>
+      <ul class="space-y-3 text-sm">
+        <li>
+          <a href="#executive-summary" class="block py-2 px-3 rounded-lg hover:bg-white/10 transition-all">Executive Summary</a>
+        </li>
+        <li>
+          <a href="#global-overview" class="block py-2 px-3 rounded-lg hover:bg-white/10 transition-all">Global Market Overview</a>
+        </li>
+        <li>
+          <a href="#market-shifts" class="block py-2 px-3 rounded-lg hover:bg-white/10 transition-all">Post-2020 Market Shifts</a>
+        </li>
+        <li>
+          <a href="#east-africa" class="block py-2 px-3 rounded-lg hover:bg-white/10 transition-all">East African Market</a>
+        </li>
+        <li>
+          <a href="#somalia" class="block py-2 px-3 rounded-lg hover:bg-white/10 transition-all">Somalia Case Study</a>
+        </li>
+        <li>
+          <a href="#comparative" class="block py-2 px-3 rounded-lg hover:bg-white/10 transition-all">Comparative Analysis</a>
+        </li>
+        <li>
+          <a href="#investment" class="block py-2 px-3 rounded-lg hover:bg-white/10 transition-all">Investment Potential</a>
+        </li>
+        <li>
+          <a href="#conclusion" class="block py-2 px-3 rounded-lg hover:bg-white/10 transition-all">Conclusion</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Hero Section -->
+      <section class="bg-gradient-to-br from-primary via-accent to-primary min-h-screen flex items-center">
+        <div class="container mx-auto px-6 lg:px-12 py-16">
+          <div class="hero-grid max-w-6xl mx-auto">
+            <!-- Main Title -->
+            <div class="hero-title text-center mb-12">
+              <h1 class="font-serif text-4xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                <em class="italic">The Global Fish Market</em>
+              </h1>
+              <p class="text-lg lg:text-xl text-white/90 max-w-3xl mx-auto">
+                An Investment Analysis with Strategic Focus on East Africa and Somalia&#39;s Untapped Marine Potential
+              </p>
+            </div>
+
+            <!-- Visual Element -->
+            <div class="hero-visual">
+              <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+                <img src="https://kimi-web-img.moonshot.cn/img/media01.stockfood.com/9a9c18ab2c9992810c7a02479177a8fc109f4113.jpg" alt="Aerial view of African coastline with traditional fishing boats" class="w-full h-80 object-cover" size="large" aspect="wide" color="blue" style="photo" query="African coastline fishing boats aerial view" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 text-white">
+                  <p class="text-sm font-medium">3,333 km of untapped coastline</p>
+                  <p class="text-xs opacity-80">Somalia&#39;s Exclusive Economic Zone</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Highlights -->
+            <div class="hero-highlights space-y-4">
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-chart-line text-secondary text-xl mr-3"></i>
+                  <h3 class="font-semibold">Market Value</h3>
+                </div>
+                <p class="text-3xl font-bold">$1.01 Trillion</p>
+                <p class="text-sm opacity-80">Global fish market valuation 2025</p>
+              </div>
+
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-fish text-secondary text-xl mr-3"></i>
+                  <h3 class="font-semibold">Production Gap</h3>
+                </div>
+                <p class="text-3xl font-bold">&lt;10%</p>
+                <p class="text-sm opacity-80">Somalia&#39;s current vs. potential yield</p>
+              </div>
+
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-leaf text-secondary text-xl mr-3"></i>
+                  <h3 class="font-semibold">Sustainability Focus</h3>
+                </div>
+                <p class="text-3xl font-bold">55%</p>
+                <p class="text-sm opacity-80">Global aquaculture production share</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="py-20 bg-white">
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-primary mb-6">Executive Summary</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto"></div>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-12 mb-16">
+            <div class="space-y-8">
+              <div class="stat-card p-8 rounded-xl">
+                <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Global Market Dynamics</h3>
+                <p class="text-lg leading-relaxed mb-4">
+                  The global fish market is a robust and expanding industry, valued at approximately <strong class="text-secondary">$1.01 trillion</strong> in 2025, with production projected to reach <strong class="text-secondary">212 million metric tons by 2034</strong>. Aquaculture has emerged as the dominant force, accounting for over 55% of global production.
+                </p>
+                <p class="text-neutral/80">
+                  Post-2020 trends, including the impact of the COVID-19 pandemic, have accelerated the adoption of e-commerce, technological innovations, and a growing emphasis on sustainability and ESG investing.
+                </p>
+              </div>
+
+              <div class="stat-card p-8 rounded-xl">
+                <h3 class="font-serif text-2xl font-semibold text-primary mb-4">East Africa&#39;s Strategic Position</h3>
+                <p class="text-lg leading-relaxed">
+                  The East African region is strategically positioned to become a significant player in the global fish market, endowed with vast freshwater and marine resources. Lake Victoria and the extensive Indian Ocean coastline provide a rich foundation for both inland and marine fisheries.
+                </p>
+              </div>
+            </div>
+
+            <div class="space-y-8">
+              <div class="stat-card p-8 rounded-xl">
+                <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Somalia&#39;s Untapped Potential</h3>
+                <p class="text-lg leading-relaxed mb-4">
+                  Somalia represents a compelling case of untapped potential with its <strong class="text-secondary">3,333-kilometer coastline</strong> and rich marine biodiversity. The country&#39;s current fish production is a fraction of its estimated sustainable yield of <strong class="text-secondary">500,000 metric tons annually</strong>.
+                </p>
+                <p class="text-neutral/80">
+                  Recent regulatory reforms and international partnerships are creating a more enabling environment for sustainable development and investment.
+                </p>
+              </div>
+
+              <div class="stat-card p-8 rounded-xl">
+                <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Strategic Recommendations</h3>
+                <ul class="space-y-3 text-lg">
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                    <span>Aquaculture development and technology transfer</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                    <span>Investment in processing and value-added products</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                    <span>Infrastructure development in cold chain and logistics</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                    <span>Public-private partnerships for risk mitigation</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Global Market Overview -->
+      <section id="global-overview" class="py-20 bg-surface">
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-primary mb-6">Global Fish Market Overview</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+            <p class="text-xl text-neutral/80 max-w-3xl mx-auto">
+              A cornerstone of the world&#39;s food system, spanning from small-scale artisanal operations to highly industrialized multinational corporations.
+            </p>
+          </div>
+
+          <!-- Market Size and Growth -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Market Size and Growth Projections</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+              <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h4 class="font-serif text-xl font-semibold mb-4 text-primary">Market Valuation</h4>
+                <div class="text-4xl font-bold text-secondary mb-2">$1.01 Trillion</div>
+                <p class="text-neutral/80 mb-4">Global fish market value in 2025, with total production volume reaching 189 million metric tons.</p>
+                <p class="text-sm text-neutral/60">
+                  Source: <a href="https://dojobusiness.com/blogs/news/fish-market-industry-statistics" class="citation-link">Fish Market Industry Statistics</a>
+                </p>
+              </div>
+
+              <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h4 class="font-serif text-xl font-semibold mb-4 text-primary">Growth Trajectory</h4>
+                <div class="text-4xl font-bold text-secondary mb-2">212M MT</div>
+                <p class="text-neutral/80 mb-4">Projected production volume by 2034, driven by rising global demand for aquatic foods.</p>
+                <p class="text-sm text-neutral/60">
+                  Source: <a href="https://dojobusiness.com/blogs/news/fish-market-industry-statistics" class="citation-link">Fish Market Industry Statistics</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Aquaculture Dominance -->
+            <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
+              <h4 class="font-serif text-2xl font-semibold mb-6 text-primary">Aquaculture Dominance</h4>
+              <div class="grid lg:grid-cols-3 gap-6 mb-6">
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-secondary mb-2">55%</div>
+                  <p class="text-neutral/80">Current aquaculture production share</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-secondary mb-2">60%</div>
+                  <p class="text-neutral/80">Projected share by 2034</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-3xl font-bold text-secondary mb-2">85%</div>
+                  <p class="text-neutral/80">Additional output from aquaculture</p>
+                </div>
+              </div>
+              <p class="text-sm text-neutral/60">
+                Source: <a href="https://www.oecd.org/en/publications/oecd-fao-agricultural-outlook-2025-2034_601276cd-en/full-report/fish-and-other-aquatic-products_ed13346f.html" class="citation-link">OECD-FAO Agricultural Outlook 2025-2034</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Leading Producers -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <h3 class="font-serif text-2xl font-semibold mb-6 text-primary">Leading Aquaculture Producers</h3>
+            <div class="space-y-6">
+              <div class="flex items-start space-x-4">
+                <div class="bg-secondary/10 p-3 rounded-lg">
+                  <i class="fas fa-flag text-secondary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-lg text-primary">China</h4>
+                  <p class="text-neutral/80">Undisputed global leader with 40% of world&#39;s total fish supply, focusing on carp, tilapia, and shellfish with advanced integrated farming systems.</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="bg-secondary/10 p-3 rounded-lg">
+                  <i class="fas fa-flag text-secondary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-lg text-primary">Indonesia</h4>
+                  <p class="text-neutral/80">Targets 30.37 million tons by 2025, leveraging vast archipelago for diverse species including shrimp and pangasius.</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <div class="bg-secondary/10 p-3 rounded-lg">
+                  <i class="fas fa-flag text-secondary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-lg text-primary">Vietnam</h4>
+                  <p class="text-neutral/80">Export powerhouse with projected $9-9.2 billion in fisheries exports for 2025, specializing in pangasius and shrimp.</p>
+                </div>
+              </div>
+            </div>
+            <p class="text-sm text-neutral/60 mt-6">
+              Sources: <a href="https://statranker.org/economy/top-10-fish-producing-countries-in-2025-global-fisheries-and-aquaculture-insights/" class="citation-link">Top Fish Producing Countries 2025</a> |
+              <a href="https://vietshrimp.net/vietnam-fisheries-2025-overview-key-markets-and-innovation-trends/" class="citation-link">Vietnam Fisheries 2025 Overview</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Post-2020 Market Shifts -->
+      <section id="market-shifts" class="py-20 bg-white">
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-primary mb-6">Post-2020 Global Market Shifts</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+            <p class="text-xl text-neutral/80 max-w-3xl mx-auto">
+              The COVID-19 pandemic served as a catalyst for transformation, accelerating technological adoption and sustainability focus across the industry.
+            </p>
+          </div>
+
+          <!-- Impact of COVID-19 -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Impact of the COVID-19 Pandemic</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+              <div class="bg-surface p-8 rounded-xl">
+                <h4 class="font-serif text-xl font-semibold mb-4 text-primary">Supply Chain Disruptions</h4>
+                <ul class="space-y-3 text-neutral/80">
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-triangle text-amber-500 mt-1 mr-3"></i>
+                    <span>Border closures and reduced air freight capacity hampered fresh seafood exports</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-chart-line-down text-red-500 mt-1 mr-3"></i>
+                    <span>Restaurant shutdowns created massive demand shock for high-value species</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-truck text-blue-500 mt-1 mr-3"></i>
+                    <span>Transportation bottlenecks increased post-harvest losses</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-surface p-8 rounded-xl">
+                <h4 class="font-serif text-xl font-semibold mb-4 text-primary">Industry Adaptations</h4>
+                <ul class="space-y-3 text-neutral/80">
+                  <li class="flex items-start">
+                    <i class="fas fa-shopping-cart text-green-500 mt-1 mr-3"></i>
+                    <span>Accelerated adoption of e-commerce and direct-to-consumer sales</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-snowflake text-blue-500 mt-1 mr-3"></i>
+                    <span>Increased processing and freezing to convert fresh products</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-digital-tachograph text-purple-500 mt-1 mr-3"></i>
+                    <span>Digitalization of seafood trade and supply chain management</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl">
+              <h4 class="font-serif text-xl font-semibold mb-4 text-primary">Consumer Behavior Shifts</h4>
+              <p class="text-lg text-neutral/80 mb-4">
+                Consumers shifted towards <strong>frozen, canned, and processed products</strong> due to convenience and longer shelf life requirements during uncertainty. This trend has shown signs of persisting post-pandemic.
+              </p>
+              <p class="text-sm text-neutral/60">
+                Source: <a href="https://www.marketdataforecast.com/market-reports/global-fish-and-fish-product-market" class="citation-link">Global Fish and Fish Product Market Report</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Technological Innovations -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Technological Innovations</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div class="bg-white border border-gray-200 p-8 rounded-xl shadow-sm">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-thermometer-half text-blue-500 text-2xl mr-4"></i>
+                  <h4 class="font-serif text-xl font-semibold text-primary">Cold Chain Advancements</h4>
+                </div>
+                <ul class="space-y-2 text-neutral/80">
+                  <li>• Solar-powered cold storage units for off-grid areas</li>
+                  <li>• IoT and blockchain for real-time temperature monitoring</li>
+                  <li>• Vacuum packaging and modified atmosphere packaging</li>
+                  <li>• Extended shelf life for fresh products</li>
+                </ul>
+              </div>
+
+              <div class="bg-white border border-gray-200 p-8 rounded-xl shadow-sm">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-robot text-purple-500 text-2xl mr-4"></i>
+                  <h4 class="font-serif text-xl font-semibold text-primary">AI in Aquaculture</h4>
+                </div>
+                <ul class="space-y-2 text-neutral/80">
+                  <li>• AI-powered feeding optimization</li>
+                  <li>• Machine learning for water quality monitoring</li>
+                  <li>• Early disease detection systems</li>
+                  <li>• Digital traceability using blockchain</li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="text-sm text-neutral/60 mt-6">
+              Sources: <a href="https://thefishsite.com/articles/reinventing-fish-distribution-in-east-africa" class="citation-link">Reinventing Fish Distribution in East Africa</a> |
+              <a href="https://www.linkedin.com/pulse/china-frozen-fish-market-trends-2025-by-application-jrxvf" class="citation-link">China Frozen Fish Market Trends 2025</a>
+            </p>
+          </div>
+
+          <!-- Sustainability Focus -->
+          <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-xl">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-6">Growing Emphasis on Sustainability</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-serif text-xl font-semibold mb-4 text-primary">ESG Investing</h4>
+                <p class="text-neutral/80 mb-4">
+                  ESG investing has become a major force, with investors considering long-term environmental and social impacts alongside financial returns. Strong ESG profiles improve access to capital and enhance brand reputation.
+                </p>
+              </div>
+
+              <div>
+                <h4 class="font-serif text-xl font-semibold mb-4 text-primary">Certified Seafood Demand</h4>
+                <p class="text-neutral/80 mb-4">
+                  Marine Stewardship Council (MSC) and Aquaculture Stewardship Council (ASC) certifications have become gold standards, with consumers willing to pay premium prices for verified sustainable products.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-white rounded-lg">
+              <div class="flex items-center mb-3">
+                <i class="fas fa-certificate text-secondary text-xl mr-3"></i>
+                <h5 class="font-semibold text-primary">Key Certification Programs</h5>
+              </div>
+              <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <strong>MSC (Marine Stewardship Council):</strong> Wild-capture fisheries certification
+                </div>
+                <div>
+                  <strong>ASC (Aquaculture Stewardship Council):</strong> Farmed fish sustainability standard
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- East African Market Analysis -->
+      <section id="east-africa" class="py-20 bg-surface">
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-primary mb-6">East African Fish Market</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+            <p class="text-xl text-neutral/80 max-w-3xl mx-auto">
+              A regional analysis of fisheries potential, challenges, and opportunities across the East African Community.
+            </p>
+          </div>
+
+          <!-- Regional Overview -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Regional Overview</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+              <div class="bg-white p-8 rounded-xl shadow-lg">
+                <img src="https://kimi-web-img.moonshot.cn/img/upload.wikimedia.org/31a4921007fc18f123f8ffce2970cac728d3061e.jpg" alt="Fishermen working on Lake Victoria in East Africa" class="w-full h-48 object-cover rounded-lg mb-6" size="medium" aspect="wide" style="photo" query="Lake Victoria fishermen" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                <h4 class="font-serif text-xl font-semibold mb-4 text-primary">Lake Victoria Fisheries</h4>
+                <p class="text-neutral/80 mb-4">
+                  The largest lake in Africa, shared by Kenya, Tanzania, and Uganda, home to Nile perch, tilapia, and dagaa. A major source of food and income for millions of people around the lake.
+                </p>
+                <div class="flex items-center text-sm text-secondary">
+                  <i class="fas fa-map-marker-alt mr-2"></i>
+                  <span>Shared by Kenya, Tanzania, Uganda</span>
+                </div>
+              </div>
+
+              <div class="bg-white p-8 rounded-xl shadow-lg">
+                <img src="https://kimi-web-img.moonshot.cn/img/elon.io/08d613c59bd95eb15ca55e45d576e24ad4c6d7f2" alt="Indian Ocean coastline in East Africa" class="w-full h-48 object-cover rounded-lg mb-6" size="medium" aspect="wide" color="blue" style="photo" query="East Africa Indian Ocean coastline" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                <h4 class="font-serif text-xl font-semibold mb-4 text-primary">Indian Ocean Marine Resources</h4>
+                <p class="text-neutral/80 mb-4">
+                  Extensive coastline providing rich marine biodiversity including tuna, lobster, shrimp, and reef fish. Major source of export earnings for coastal communities.
+                </p>
+                <div class="flex items-center text-sm text-secondary">
+                  <i class="fas fa-water mr-2"></i>
+                  <span>Coastlines: Kenya, Tanzania, Somalia</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Production Statistics -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Regional Production Dynamics</h3>
+
+            <!-- EAC Aquaculture Production Chart -->
+            <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
+              <h4 class="font-serif text-xl font-semibold mb-6 text-primary">East African Community Aquaculture Production (2009-2020)</h4>
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid">
+                  graph LR
+                  A[&#34;2009
+                  <br/>78,640 MT&#34;] --&gt; B[&#34;2010
+                  <br/>108,050 MT&#34;]
+                  B --&gt; C[&#34;2011
+                  <br/>103,170 MT&#34;]
+                  C --&gt; D[&#34;2012
+                  <br/>118,400 MT&#34;]
+                  D --&gt; E[&#34;2013
+                  <br/>124,620 MT&#34;]
+                  E --&gt; F[&#34;2014
+                  <br/>138,510 MT&#34;]
+                  F --&gt; G[&#34;2015
+                  <br/>140,320 MT&#34;]
+                  G --&gt; H[&#34;2016
+                  <br/>141,330 MT&#34;]
+                  H --&gt; I[&#34;2017
+                  <br/>137,030 MT&#34;]
+                  I --&gt; J[&#34;2018
+                  <br/>134,830 MT&#34;]
+                  J --&gt; K[&#34;2019
+                  <br/>139,110 MT&#34;]
+                  K --&gt; L[&#34;2020
+                  <br/>163,690 MT&#34;]
+
+                  style A fill:#e2e8f0,stroke:#1e3a8a,stroke-width:2px,color:#1e3a8a
+                  style L fill:#059669,stroke:#1e3a8a,stroke-width:2px,color:#ffffff
+                  style B fill:#f8fafc,stroke:#1e3a8a,stroke-width:1px,color:#1e3a8a
+                  style C fill:#f8fafc,stroke:#1e3a8a,stroke-width:1px,color:#1e3a8a
+                  style D fill:#f8fafc,stroke:#1e3a8a,stroke-width:1px,color:#1e3a8a
+                  style E fill:#f8fafc,stroke:#1e3a8a,stroke-width:1px,color:#1e3a8a
+                  style F fill:#f8fafc,stroke:#1e3a8a,stroke-width:1px,color:#1e3a8a
+                  style G fill:#f8fafc,stroke:#1e3a8a,stroke-width:1px,color:#1e3a8a
+                  style H fill:#f8fafc,stroke:#1e3a8a,stroke-width:1px,color:#1e3a8a
+                  style I fill:#f8fafc,stroke:#1e3a8a,stroke-width:1px,color:#1e3a8a
+                  style J fill:#f8fafc,stroke:#1e3a8a,stroke-width:1px,color:#1e3a8a
+                  style K fill:#f8fafc,stroke:#1e3a8a,stroke-width:1px,color:#1e3a8a
+                </div>
+              </div>
+              <p class="text-sm text-neutral/60 mt-4">
+                Source: <a href="https://www.eala.org/uploads/Final_Draft_EAC_Annual_Report_2020-2021_Updated.pdf" class="citation-link">East African Community Annual Report 2020-2021</a>
+              </p>
+            </div>
+
+            <!-- Country Comparison -->
+            <div class="grid lg:grid-cols-3 gap-6 mb-8">
+              <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h4 class="font-serif text-lg font-semibold mb-4 text-primary">Uganda</h4>
+                <div class="text-3xl font-bold text-secondary mb-2">125,000 MT</div>
+                <p class="text-sm text-neutral/80 mb-2">Aquaculture production (2020)</p>
+                <p class="text-xs text-neutral/60">Regional leader in aquaculture</p>
+              </div>
+
+              <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h4 class="font-serif text-lg font-semibold mb-4 text-primary">Kenya</h4>
+                <div class="text-3xl font-bold text-secondary mb-2">193,074 MT</div>
+                <p class="text-sm text-neutral/80 mb-2">Total fish production (2023)</p>
+                <p class="text-xs text-neutral/60">Balanced capture and aquaculture</p>
+              </div>
+
+              <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h4 class="font-serif text-lg font-semibold mb-4 text-primary">Tanzania</h4>
+                <div class="text-3xl font-bold text-secondary mb-2">1,424 km</div>
+                <p class="text-sm text-neutral/80 mb-2">Coastline length</p>
+                <p class="text-xs text-neutral/60">Dual marine/freshwater advantage</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Challenges and Opportunities -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Common Challenges and Opportunities</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-serif text-xl font-semibold mb-6 text-red-600">Challenges</h4>
+                <div class="space-y-4">
+                  <div class="border-l-4 border-red-500 pl-4">
+                    <h5 class="font-semibold text-primary mb-2">Illegal, Unreported, and Unregulated (IUU) Fishing</h5>
+                    <p class="text-sm text-neutral/80">Foreign vessels operating illegally, costing East Africa an estimated $104-260 million annually.</p>
+                  </div>
+
+                  <div class="border-l-4 border-red-500 pl-4">
+                    <h5 class="font-semibold text-primary mb-2">Infrastructure Deficits</h5>
+                    <p class="text-sm text-neutral/80">Limited cold storage, processing facilities, and poor transportation networks leading to 30-40% post-harvest losses.</p>
+                  </div>
+
+                  <div class="border-l-4 border-red-500 pl-4">
+                    <h5 class="font-semibold text-primary mb-2">Limited Value Addition</h5>
+                    <p class="text-sm text-neutral/80">Most fish sold in raw form with minimal processing, missing opportunities for higher-value products.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-serif text-xl font-semibold mb-6 text-secondary">Opportunities</h4>
+                <div class="space-y-4">
+                  <div class="border-l-4 border-secondary pl-4">
+                    <h5 class="font-semibold text-primary mb-2">Vast Untapped Resources</h5>
+                    <p class="text-sm text-neutral/80">Significant potential for increased production from both wild-capture fisheries and aquaculture development.</p>
+                  </div>
+
+                  <div class="border-l-4 border-secondary pl-4">
+                    <h5 class="font-semibold text-primary mb-2">Regional Integration</h5>
+                    <p class="text-sm text-neutral/80">EAC market of 180+ million people with harmonized standards and free movement of goods.</p>
+                  </div>
+
+                  <div class="border-l-4 border-secondary pl-4">
+                    <h5 class="font-semibold text-primary mb-2">Technology Adoption</h5>
+                    <p class="text-sm text-neutral/80">Solar-powered cold storage, digital traceability, and AI-driven aquaculture systems.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-sm text-neutral/60 mt-8">
+              Sources: <a href="https://businessinsider.co.tz/east-africas-blue-economy-unlocking-growth/" class="citation-link">East Africa&#39;s Blue Economy</a> |
+              <a href="https://www.uneca.org/eastern-africa/blue-economy" class="citation-link">UNECA Blue Economy</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Somalia Case Study -->
+      <section id="somalia" class="py-20 bg-white">
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-primary mb-6">Somalia: A Case Study in Untapped Potential</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+            <p class="text-xl text-neutral/80 max-w-3xl mx-auto">
+              With the longest coastline in mainland Africa, Somalia represents one of the world&#39;s most promising untapped fisheries opportunities.
+            </p>
+          </div>
+
+          <!-- Somalia Potential Overview -->
+          <div class="mb-16">
+            <div class="bg-gradient-to-br from-blue-900 to-blue-700 text-white p-12 rounded-2xl mb-8">
+              <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h3 class="font-serif text-3xl font-bold mb-6">The Blue Economy Opportunity</h3>
+                  <p class="text-lg leading-relaxed mb-6">
+                    Somalia&#39;s Exclusive Economic Zone covers <strong>830,000 square kilometers</strong> of rich marine territory, home to diverse commercially valuable species including tuna, lobster, and shrimp.
+                  </p>
+                  <div class="grid grid-cols-2 gap-6">
+                    <div class="text-center">
+                      <div class="text-4xl font-bold text-secondary mb-2">3,333 km</div>
+                      <div class="text-sm opacity-90">Coastline Length</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-4xl font-bold text-secondary mb-2">&lt;10%</div>
+                      <div class="text-sm opacity-90">Current Capacity Utilization</div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <img src="https://kimi-web-img.moonshot.cn/img/i.ytimg.com/944ff36d97815525806974ac5a9ea6ca79d5df34.jpg" alt="Traditional fishing boats on Somalia&#39;s coastline" class="w-full h-64 object-cover rounded-xl" size="medium" aspect="wide" color="blue" style="photo" query="Somalia coastline fishing boats" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                </div>
+              </div>
+            </div>
+
+            <!-- Production Potential Chart -->
+            <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
+              <h4 class="font-serif text-xl font-semibold mb-6 text-primary">Somalia&#39;s Fisheries Production Potential vs. Reality</h4>
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid">
+                  graph TD
+                  A[&#34;Current Production
+                  <br/>19,000 MT
+                  <br/>2022 Actual&#34;] --&gt; B[&#34;Local Artisanal
+                  <br/>6,000 MT&#34;]
+                  A --&gt; C[&#34;Foreign Industrial
+                  <br/>13,000 MT&#34;]
+
+                  D[&#34;Sustainable Potential
+                  <br/>200,000 - 500,000 MT
+                  <br/>Annual&#34;] --&gt; E[&#34;Conservative Estimate
+                  <br/>200,000 MT&#34;]
+                  D --&gt; F[&#34;Optimistic Estimate
+                  <br/>380,000 MT&#34;]
+                  D --&gt; G[&#34;Maximum Potential
+                  <br/>500,000 MT&#34;]
+
+                  H[&#34;Production Gap
+                  <br/>181,000 - 481,000 MT
+                  <br/>Untapped&#34;] --&gt; I[&#34;Economic Opportunity
+                  <br/>$306M Annual Loss
+                  <br/>from IUU Fishing&#34;]
+
+                  style A fill:#ef4444,stroke:#7f1d1d,stroke-width:2px,color:#ffffff
+                  style B fill:#fca5a5,stroke:#7f1d1d,stroke-width:1px,color:#7f1d1d
+                  style C fill:#fca5a5,stroke:#7f1d1d,stroke-width:1px,color:#7f1d1d
+                  style D fill:#059669,stroke:#065f46,stroke-width:2px,color:#ffffff
+                  style E fill:#6ee7b7,stroke:#065f46,stroke-width:1px,color:#065f46
+                  style F fill:#6ee7b7,stroke:#065f46,stroke-width:1px,color:#065f46
+                  style G fill:#6ee7b7,stroke:#065f46,stroke-width:1px,color:#065f46
+                  style H fill:#f59e0b,stroke:#92400e,stroke-width:2px,color:#ffffff
+                  style I fill:#fde68a,stroke:#92400e,stroke-width:1px,color:#92400e
+                </div>
+              </div>
+              <p class="text-sm text-neutral/60 mt-4">
+                Sources: <a href="https://www.trade.gov/country-commercial-guides/somalia-fisheries-and-blue-economy" class="citation-link">Somalia Fisheries and Blue Economy</a> |
+                <a href="https://globalvoices.org/2025/06/22/somalias-coastal-crisis-voices-from-the-edge-of-the-sea/" class="citation-link">Somalia&#39;s Coastal Crisis</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Key Commercial Species -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Key Commercial Species</h3>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+              <div class="bg-white border border-gray-200 p-8 rounded-xl shadow-sm">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-fish text-blue-500 text-2xl mr-4"></i>
+                  <h4 class="font-serif text-xl font-semibold text-primary">Tuna</h4>
+                </div>
+                <p class="text-neutral/80 mb-4">
+                  Highly migratory species including yellowfin, skipjack, and bigeye. Prime target for industrial fishing fleets with high global demand.
+                </p>
+                <div class="flex items-center text-sm text-secondary">
+                  <i class="fas fa-dollar-sign mr-2"></i>
+                  <span>High-value export commodity</span>
+                </div>
+              </div>
+
+              <div class="bg-white border border-gray-200 p-8 rounded-xl shadow-sm">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-shrimp text-red-500 text-2xl mr-4"></i>
+                  <h4 class="font-serif text-xl font-semibold text-primary">Lobster</h4>
+                </div>
+                <p class="text-neutral/80 mb-4">
+                  Tropical spiny lobster found in nearshore reef environments. Commands premium prices in international markets.
+                </p>
+                <div class="flex items-center text-sm text-secondary">
+                  <i class="fas fa-star mr-2"></i>
+                  <span>Premium export product</span>
+                </div>
+              </div>
+
+              <div class="bg-white border border-gray-200 p-8 rounded-xl shadow-sm">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-shrimp text-pink-500 text-2xl mr-4"></i>
+                  <h4 class="font-serif text-xl font-semibold text-primary">Shrimp</h4>
+                </div>
+                <p class="text-neutral/80 mb-4">
+                  Various shrimp species in coastal waters. Important for both domestic consumption and export markets.
+                </p>
+                <div class="flex items-center text-sm text-secondary">
+                  <i class="fas fa-globe mr-2"></i>
+                  <span>Strong global demand</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-sm text-neutral/60 mt-6">
+              Source: <a href="https://www.fisheries.noaa.gov/s3/2025-08/Somalia-final-2025-508.pdf" class="citation-link">Somalia Fisheries Profile</a>
+            </p>
+          </div>
+
+          <!-- Regulatory Reforms -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Recent Regulatory and Policy Reforms</h3>
+
+            <div class="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-xl mb-8">
+              <h4 class="font-serif text-2xl font-semibold mb-6 text-primary">2025 Regulatory Framework</h4>
+              <p class="text-lg text-neutral/80 mb-6">
+                In November 2025, Somalia&#39;s Ministry of Fisheries and Blue Economy introduced comprehensive new regulations addressing food safety, product traceability, and licensing systems.
+              </p>
+
+              <div class="grid lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg">
+                  <div class="flex items-center mb-3">
+                    <i class="fas fa-shield-alt text-secondary text-xl mr-3"></i>
+                    <h5 class="font-semibold text-primary">National Quality Agency</h5>
+                  </div>
+                  <p class="text-sm text-neutral/80">New agency established for monitoring fish quality and ensuring international food safety standards</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg">
+                  <div class="flex items-center mb-3">
+                    <i class="fas fa-file-contract text-secondary text-xl mr-3"></i>
+                    <h5 class="font-semibold text-primary">Streamlined Licensing</h5>
+                  </div>
+                  <p class="text-sm text-neutral/80">Transparent system for licensing fishing vessels to combat IUU fishing</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg">
+                  <div class="flex items-center mb-3">
+                    <i class="fas fa-search text-secondary text-xl mr-3"></i>
+                    <h5 class="font-semibold text-primary">Traceability System</h5>
+                  </div>
+                  <p class="text-sm text-neutral/80">Comprehensive tracking from catch to consumer for export compliance</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-red-50 border border-red-200 p-6 rounded-lg">
+              <div class="flex items-start space-x-4">
+                <i class="fas fa-exclamation-triangle text-red-500 text-xl mt-1"></i>
+                <div>
+                  <h5 class="font-semibold text-red-700 mb-2">IUU Fishing Economic Impact</h5>
+                  <p class="text-red-600">
+                    Somalia loses approximately <strong>USD 306 million annually</strong> to illegal, unreported, and unregulated fishing activities.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-sm text-neutral/60 mt-6">
+              Source: <a href="https://www.seafoodsource.com/news/supply-trade/somalia-publishes-new-regulations-to-spur-safety-traceability-in-nation-s-fisheries-sector" class="citation-link">Somalia Fisheries Regulatory Reforms</a>
+            </p>
+          </div>
+
+          <!-- International Partnerships -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Strategic Initiatives and International Partnerships</h3>
+
+            <div class="space-y-8">
+              <div class="border-l-4 border-secondary pl-6">
+                <h4 class="font-serif text-xl font-semibold mb-3 text-primary">Japan-FAO Infrastructure Project</h4>
+                <div class="grid lg:grid-cols-2 gap-6">
+                  <div>
+                    <p class="text-neutral/80 mb-4">
+                      <strong>$2 million project</strong> launched in partnership with FAO and Japan to modernize fisheries infrastructure and combat IUU fishing.
+                    </p>
+                    <ul class="space-y-2 text-sm text-neutral/80">
+                      <li class="flex items-center">
+                        <i class="fas fa-solar-panel text-secondary mr-2"></i>
+                        Solar-powered fish market with cold storage in Mogadishu
+                      </li>
+                      <li class="flex items-center">
+                        <i class="fas fa-tools text-secondary mr-2"></i>
+                        Service workshop for boats and engines
+                      </li>
+                      <li class="flex items-center">
+                        <i class="fas fa-graduation-cap text-secondary mr-2"></i>
+                        Training in responsible fishing practices
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <img src="https://kimi-web-img.moonshot.cn/img/i.guim.co.uk/8f23ecd54d0c094ee37c58c28011df509602e329.jpg" alt="Solar-powered fish market in Mogadishu" class="w-full h-32 object-cover rounded-lg" size="medium" aspect="wide" style="photo" query="solar powered fish market mogadishu" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border-l-4 border-accent pl-6">
+                <h4 class="font-serif text-xl font-semibold mb-3 text-primary">Strategic Partnerships</h4>
+                <div class="grid lg:grid-cols-2 gap-6">
+                  <div class="space-y-4">
+                    <div class="bg-surface p-4 rounded-lg">
+                      <h5 class="font-semibold text-primary mb-2">AD Ports Group (UAE)</h5>
+                      <p class="text-sm text-neutral/80">
+                        MoU signed October 2024 for joint investment in fishing ports, marine monitoring stations, and training schools.
+                      </p>
+                    </div>
+
+                    <div class="bg-surface p-4 rounded-lg">
+                      <h5 class="font-semibold text-primary mb-2">OYAK Group (Turkey)</h5>
+                      <p class="text-sm text-neutral/80">
+                        Cooperation agreement June 2025 for direct investment in fishing, processing, and marketing.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="space-y-4">
+                    <div class="bg-surface p-4 rounded-lg">
+                      <h5 class="font-semibold text-primary mb-2">China Market Access</h5>
+                      <p class="text-sm text-neutral/80">
+                        Expanded cooperation with zero-tariff access for 98% of taxable products under EAC-China agreement.
+                      </p>
+                    </div>
+
+                    <div class="bg-surface p-4 rounded-lg">
+                      <h5 class="font-semibold text-primary mb-2">East African Community</h5>
+                      <p class="text-sm text-neutral/80">
+                        Accession December 2023 provides preferential access to regional market of 180+ million people.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-sm text-neutral/60 mt-8">
+              Sources: <a href="https://www.seafoodsource.com/news/supply-trade/japan-partners-with-fao-on-somalian-fisheries-project" class="citation-link">Japan-FAO Somalia Project</a> |
+              <a href="https://sonna.so/en/somalia-and-uae-forge-strategic-partnership-to-boost-fisheries-development/" class="citation-link">Somalia-UAE Partnership</a> |
+              <a href="https://www.topafricanews.com/2025/06/18/somalias-ministry-of-fisheries-signs-agreement-with-turkish-company/" class="citation-link">Somalia-OYAK Agreement</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparative Analysis: Kenya -->
+      <section id="comparative" class="py-20 bg-surface">
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-primary mb-6">Comparative Analysis: Kenya as Regional Benchmark</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+            <p class="text-xl text-neutral/80 max-w-3xl mx-auto">
+              Kenya&#39;s established fisheries framework provides valuable insights and benchmarks for Somalia&#39;s development potential.
+            </p>
+          </div>
+
+          <!-- Framework Comparison -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Established Fisheries Framework</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+              <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h4 class="font-serif text-xl font-semibold mb-6 text-primary">Policy Environment</h4>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-file-alt text-secondary mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold text-primary">National Aquaculture Development Plan 2025</h5>
+                      <p class="text-sm text-neutral/80">Comprehensive roadmap for sector development</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-balance-scale text-secondary mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold text-primary">Fisheries Management Act 2016</h5>
+                      <p class="text-sm text-neutral/80">Principal legislation governing aquatic resources</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-building text-secondary mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold text-primary">Key Institutions</h5>
+                      <p class="text-sm text-neutral/80">Kenya Fisheries Service (KeFS), Kenya Fish Marketing Authority (KFMA)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-8 rounded-xl shadow-lg">
+                <img src="https://kimi-web-img.moonshot.cn/imagegen/20251110/021762739760527a9822f5984ada09e0bce0c05fc60a427bf036c_0.jpeg" alt="Fisheries research laboratory in Kenya" class="w-full h-48 object-cover rounded-lg mb-4" size="medium" aspect="wide" style="photo" query="Kenya fisheries research laboratory" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                <h4 class="font-serif text-xl font-semibold mb-4 text-primary">Research Infrastructure</h4>
+                <ul class="space-y-2 text-sm text-neutral/80">
+                  <li class="flex items-center">
+                    <i class="fas fa-flask text-secondary mr-2"></i>
+                    National Mariculture Resource &amp; Training Centre (NAMARET)
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-graduation-cap text-secondary mr-2"></i>
+                    Kabonyo Fisheries and Aquaculture Service Centre (KFASTCE)
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-microscope text-secondary mr-2"></i>
+                    Fish Quality Control Laboratories (FOMENTO project)
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sustainability and Certification -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Sustainability and Certification Efforts</h3>
+
+            <div class="grid lg:grid-cols-3 gap-6 mb-8">
+              <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-secondary">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-certificate text-secondary text-2xl mr-3"></i>
+                  <h4 class="font-serif text-lg font-semibold text-primary">MSC Certification</h4>
+                </div>
+                <p class="text-sm text-neutral/80 mb-3">
+                  Kenya has Marine Stewardship Council certified fisheries, including Nile perch on Lake Victoria.
+                </p>
+                <div class="text-xs text-secondary font-semibold">Premium market access</div>
+              </div>
+
+              <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-secondary">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-shield-alt text-secondary text-2xl mr-3"></i>
+                  <h4 class="font-serif text-lg font-semibold text-primary">Coast Guard Service</h4>
+                </div>
+                <p class="text-sm text-neutral/80 mb-3">
+                  Kenya Coast Guard Service reduced IUU fishing by nearly 70% since 2018 establishment.
+                </p>
+                <div class="text-xs text-secondary font-semibold">70% Reduction in IUU</div>
+              </div>
+
+              <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-secondary">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-satellite text-secondary text-2xl mr-3"></i>
+                  <h4 class="font-serif text-lg font-semibold text-primary">Surveillance Systems</h4>
+                </div>
+                <p class="text-sm text-neutral/80 mb-3">
+                  State-of-the-art MCS center with Vessel Monitoring System and Automatic Identification System.
+                </p>
+                <div class="text-xs text-secondary font-semibold">Advanced monitoring</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Market Dynamics Comparison -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Market Dynamics Comparison</h3>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead class="bg-surface">
+                  <tr>
+                    <th class="text-left p-4 font-semibold text-primary">Aspect</th>
+                    <th class="text-left p-4 font-semibold text-primary">Kenya</th>
+                    <th class="text-left p-4 font-semibold text-primary">Somalia</th>
+                    <th class="text-left p-4 font-semibold text-primary">Investment Implications</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="p-4 font-semibold">Regulatory Framework</td>
+                    <td class="p-4 text-neutral/80">Established with comprehensive legislation and institutions</td>
+                    <td class="p-4 text-neutral/80">New 2025 regulations, developing framework</td>
+                    <td class="p-4 text-neutral/80">Somalia offers ground-floor opportunity with modern approach</td>
+                  </tr>
+                  <tr>
+                    <td class="p-4 font-semibold">Infrastructure</td>
+                    <td class="p-4 text-neutral/80">Developed but with gaps in cold chain logistics</td>
+                    <td class="p-4 text-neutral/80">Minimal but rapidly advancing with international partnerships</td>
+                    <td class="p-4 text-neutral/80">High-impact infrastructure investment opportunities in both</td>
+                  </tr>
+                  <tr>
+                    <td class="p-4 font-semibold">Market Access</td>
+                    <td class="p-4 text-neutral/80">Established export markets (EU, Middle East)</td>
+                    <td class="p-4 text-neutral/80">Untapped with new EAC-China zero-tariff access</td>
+                    <td class="p-4 text-neutral/80">Somalia offers first-mover advantage in premium markets</td>
+                  </tr>
+                  <tr>
+                    <td class="p-4 font-semibold">Production Scale</td>
+                    <td class="p-4 text-neutral/80">193,074 MT total production (2023)</td>
+                    <td class="p-4 text-neutral/80">19,000 MT current vs. 500,000 MT potential</td>
+                    <td class="p-4 text-neutral/80">Somalia offers 8-25x growth potential</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="text-sm text-neutral/60 mt-6">
+              Sources: <a href="https://kefs.go.ke/world-fisheries-day" class="citation-link">Kenya Fisheries Production</a> |
+              <a href="https://www.trade.gov/country-commercial-guides/somalia-fisheries-and-blue-economy" class="citation-link">Somalia Fisheries Potential</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Investment Potential -->
+      <section id="investment" class="py-20 bg-white">
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-primary mb-6">Investment Potential and Strategic Opportunities</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+            <p class="text-xl text-neutral/80 max-w-3xl mx-auto">
+              East Africa&#39;s fisheries sector presents compelling investment opportunities driven by untapped resources, growing demand, and supportive government policies.
+            </p>
+          </div>
+
+          <!-- High-Growth Investment Avenues -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">High-Growth Investment Avenues</h3>
+
+            <div class="grid lg:grid-cols-3 gap-8 mb-8">
+              <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-xl">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-fish text-secondary text-2xl mr-3"></i>
+                  <h4 class="font-serif text-xl font-semibold text-primary">Aquaculture Development</h4>
+                </div>
+                <ul class="space-y-3 text-neutral/80">
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-secondary mt-1 mr-2 text-sm"></i>
+                    <span>Modern hatcheries and seed production</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-secondary mt-1 mr-2 text-sm"></i>
+                    <span>Sustainable fish feed development</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-secondary mt-1 mr-2 text-sm"></i>
+                    <span>Advanced farming technologies (RAS, cage culture)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-secondary mt-1 mr-2 text-sm"></i>
+                    <span>Technology transfer and training programs</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-xl">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-industry text-accent text-2xl mr-3"></i>
+                  <h4 class="font-serif text-xl font-semibold text-primary">Processing &amp; Value Addition</h4>
+                </div>
+                <ul class="space-y-3 text-neutral/80">
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-accent mt-1 mr-2 text-sm"></i>
+                    <span>Modern processing facilities and filleting plants</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-accent mt-1 mr-2 text-sm"></i>
+                    <span>Smoked, canned, and marinated products</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-accent mt-1 mr-2 text-sm"></i>
+                    <span>Fish powder and nutritional supplements</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-accent mt-1 mr-2 text-sm"></i>
+                    <span>By-product utilization and waste reduction</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl">
+                <div class="flex items-center mb-4">
+                  <i class="fas fa-warehouse text-primary text-2xl mr-3"></i>
+                  <h4 class="font-serif text-xl font-semibold text-primary">Infrastructure Development</h4>
+                </div>
+                <ul class="space-y-3 text-neutral/80">
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-primary mt-1 mr-2 text-sm"></i>
+                    <span>Solar-powered cold storage facilities</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-primary mt-1 mr-2 text-sm"></i>
+                    <span>Modern fishing ports and landing sites</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-primary mt-1 mr-2 text-sm"></i>
+                    <span>Refrigerated transport and logistics</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-primary mt-1 mr-2 text-sm"></i>
+                    <span>Digital traceability and quality control systems</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Market Access Opportunities -->
+          <div class="mb-16">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Leveraging Regional and International Market Access</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+              <div class="bg-white border border-gray-200 p-8 rounded-xl shadow-sm">
+                <h4 class="font-serif text-xl font-semibold mb-6 text-primary">East African Community Market</h4>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <span class="text-neutral/80">Combined Population</span>
+                    <span class="font-bold text-secondary">180+ million</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-neutral/80">Free Movement of Goods</span>
+                    <i class="fas fa-check-circle text-secondary"></i>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-neutral/80">Harmonized Standards</span>
+                    <i class="fas fa-check-circle text-secondary"></i>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-neutral/80">Somalia Membership</span>
+                    <span class="text-sm text-secondary">Since Dec 2023</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white border border-gray-200 p-8 rounded-xl shadow-sm">
+                <h4 class="font-serif text-xl font-semibold mb-6 text-primary">Global Market Access</h4>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <span class="text-neutral/80">European Union</span>
+                    <span class="text-sm text-secondary">Premium market</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-neutral/80">China Market</span>
+                    <span class="text-sm text-secondary">98% zero-tariff</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-neutral/80">Middle East</span>
+                    <span class="text-sm text-secondary">Growing demand</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-neutral/80">AfCFTA</span>
+                    <span class="text-sm text-secondary">Continental access</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl">
+              <h4 class="font-serif text-xl font-semibold mb-4 text-primary">Market Entry Requirements</h4>
+              <div class="grid lg:grid-cols-2 gap-6">
+                <div>
+                  <h5 class="font-semibold text-primary mb-3">Quality Standards</h5>
+                  <ul class="space-y-2 text-sm text-neutral/80">
+                    <li>• International food safety compliance</li>
+                    <li>• HACCP certification for processing</li>
+                    <li>• Cold chain maintenance standards</li>
+                    <li>• Traceability systems implementation</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-primary mb-3">Sustainability Requirements</h5>
+                  <ul class="space-y-2 text-sm text-neutral/80">
+                    <li>• MSC/ASC certification for premium markets</li>
+                    <li>• Sustainable fishing practices documentation</li>
+                    <li>• Environmental impact assessments</li>
+                    <li>• Social responsibility compliance</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Risk Mitigation Strategies -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <h3 class="font-serif text-3xl font-semibold text-primary mb-8">Public-Private Partnerships and Risk Mitigation</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+              <div>
+                <h4 class="font-serif text-xl font-semibold mb-6 text-primary">Government Initiatives</h4>
+                <div class="space-y-4">
+                  <div class="bg-surface p-4 rounded-lg">
+                    <h5 class="font-semibold text-primary mb-2">Kenya ABDP Program</h5>
+                    <p class="text-sm text-neutral/80">USD 109.2 million Aquaculture Business Development Programme with World Bank and IFAD partnership</p>
+                  </div>
+                  <div class="bg-surface p-4 rounded-lg">
+                    <h5 class="font-semibold text-primary mb-2">Somalia Development Agreements</h5>
+                    <p class="text-sm text-neutral/80">Strategic partnerships with AD Ports Group and OYAK for infrastructure development</p>
+                  </div>
+                  <div class="bg-surface p-4 rounded-lg">
+                    <h5 class="font-semibold text-primary mb-2">EAC Integration</h5>
+                    <p class="text-sm text-neutral/80">Regional harmonization of standards and trade facilitation initiatives</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-serif text-xl font-semibold mb-6 text-primary">Risk Mitigation Strategies</h4>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-search text-secondary mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold text-primary">Thorough Due Diligence</h5>
+                      <p class="text-sm text-neutral/80">Comprehensive market research and stakeholder analysis</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-handshake text-secondary mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold text-primary">Local Partnerships</h5>
+                      <p class="text-sm text-neutral/80">Collaboration with established local entities and communities</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-chart-line text-secondary mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold text-primary">Phased Approach</h5>
+                      <p class="text-sm text-neutral/80">Gradual investment scaling with performance monitoring</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-shield-alt text-secondary mt-1"></i>
+                    <div>
+                      <h5 class="font-semibold text-primary">Insurance Coverage</h5>
+                      <p class="text-sm text-neutral/80">Political risk insurance and export credit guarantees</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-secondary/10 to-primary/10 p-6 rounded-lg">
+              <div class="flex items-start space-x-4">
+                <i class="fas fa-lightbulb text-secondary text-xl mt-1"></i>
+                <div>
+                  <h5 class="font-semibold text-primary mb-2">Investment Strategy Recommendation</h5>
+                  <p class="text-neutral/80">
+                    Engage with government initiatives and development agencies to leverage funding, technical expertise, and stable operating environments. Align investments with national blue economy strategies for maximum impact and returns.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-sm text-neutral/60 mt-6">
+              Sources: <a href="https://www.africafoodshow.com/html/news/contents/163/245.html" class="citation-link">Kenya Aquaculture Development</a> |
+              <a href="https://www.seafoodsource.com/news/supply-trade/japan-partners-with-fao-on-somalian-fisheries-project" class="citation-link">Somalia Development Projects</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion -->
+      <section id="conclusion" class="py-20 bg-gradient-to-br from-primary via-accent to-primary text-white">
+        <div class="container mx-auto px-6 lg:px-12 max-w-6xl">
+          <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold mb-6">Conclusion and Future Outlook</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto"></div>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-12 mb-16">
+            <div>
+              <h3 class="font-serif text-3xl font-semibold mb-8">Synthesis of Key Findings</h3>
+              <div class="space-y-6">
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                  <h4 class="font-semibold mb-3">Global Market Dynamics</h4>
+                  <p class="text-white/90">
+                    The $1.01 trillion global fish market continues robust growth, with aquaculture dominating production and sustainability becoming central to investment decisions.
+                  </p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                  <h4 class="font-semibold mb-3">East African Potential</h4>
+                  <p class="text-white/90">
+                    The region&#39;s vast marine and freshwater resources, combined with growing regional integration, create unprecedented opportunities for sustainable fisheries development.
+                  </p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                  <h4 class="font-semibold mb-3">Somalia&#39;s Strategic Position</h4>
+                  <p class="text-white/90">
+                    With Africa&#39;s longest coastline and current production at less than 10% of sustainable potential, Somalia represents one of the world&#39;s most compelling fisheries investment opportunities.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <img src="https://kimi-web-img.moonshot.cn/img/dialogue.earth/2d65a845f05187c0741c90ab7cc9eba3c12b7aba.jpg" alt="Sustainable fisheries development in East Africa" class="w-full h-80 object-cover rounded-xl mb-6" size="medium" aspect="wide" color="blue" style="photo" query="sustainable fisheries East Africa" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+              <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                <h4 class="font-semibold mb-3">Investment Imperative</h4>
+                <p class="text-white/90">
+                  Strategic investment in aquaculture, processing infrastructure, and sustainable practices can unlock multi-billion dollar opportunities while contributing to regional food security and economic development.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Call to Action -->
+          <div class="text-center">
+            <h3 class="font-serif text-3xl font-semibold mb-8">The Time to Invest is Now</h3>
+            <div class="grid lg:grid-cols-3 gap-8">
+              <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+                <i class="fas fa-chart-line text-secondary text-3xl mb-4"></i>
+                <h4 class="font-semibold mb-3">Market Growth</h4>
+                <p class="text-white/90">Global fish market projected to reach 212 million metric tons by 2034, driven by rising protein demand.</p>
+              </div>
+
+              <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+                <i class="fas fa-leaf text-secondary text-3xl mb-4"></i>
+                <h4 class="font-semibold mb-3">Sustainability Focus</h4>
+                <p class="text-white/90">ESG investing and certified seafood demand create premium opportunities for responsible operators.</p>
+              </div>
+
+              <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+                <i class="fas fa-rocket text-secondary text-3xl mb-4"></i>
+                <h4 class="font-semibold mb-3">Untapped Potential</h4>
+                <p class="text-white/90">Somalia&#39;s 3,333 km coastline and East Africa&#39;s resources offer unprecedented growth opportunities.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+        // Initialize Mermaid with enhanced theming and contrast
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                // Main colors with high contrast
+                primaryColor: '#f8fafc',
+                primaryTextColor: '#1e3a8a',
+                primaryBorderColor: '#1e3a8a',
+                lineColor: '#059669',
+                sectionBkgColor: '#f8fafc',
+                altSectionBkgColor: '#e2e8f0',
+                gridColor: '#cbd5e1',
+                secondaryColor: '#059669',
+                tertiaryColor: '#7c3aed',
+                background: '#ffffff',
+                mainBkg: '#f8fafc',
+                secondBkg: '#e2e8f0',
+                tertiaryBkg: '#cbd5e1',
+                
+                // Node colors with high contrast
+                cScale0: '#1e3a8a',
+                cScale1: '#059669', 
+                cScale2: '#7c3aed',
+                cScale3: '#dc2626',
+                cScale4: '#ea580c',
+                cScale5: '#ca8a04',
+                
+                // Text colors for different backgrounds
+                darkTextColor: '#1f2937',
+                lightTextColor: '#ffffff',
+                textColor: '#1f2937',
+                
+                // Edge and arrow colors
+                edgeLabelBackground: '#ffffff',
+                clusterBkg: '#f8fafc',
+                clusterBorder: '#1e3a8a',
+                
+                // Special node colors for better contrast
+                fillType0: '#f8fafc',
+                fillType1: '#e2e8f0',
+                fillType2: '#cbd5e1',
+                fillType3: '#94a3b8',
+                fillType4: '#64748b',
+                fillType5: '#475569',
+                fillType6: '#334155',
+                fillType7: '#1e293b'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 50,
+                diagramPadding: 20
+            },
+            graph: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                padding: 20
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize mermaid controls after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMermaidControls();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const toc = document.querySelector('.toc-fixed');
+            toc.classList.toggle('open');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const toc = document.querySelector('.toc-fixed');
+            const hamburgerButton = document.querySelector('.mobile-menu-button');
+            
+            // Check if click is outside TOC and not on hamburger button
+            if (toc.classList.contains('open') && 
+                !toc.contains(event.target) && 
+                event.target !== hamburgerButton && 
+                !hamburgerButton.contains(event.target)) {
+                toc.classList.remove('open');
+            }
+        });
+
+        // Handle window resize
+        function handleResize() {
+            const toc = document.querySelector('.toc-fixed');
+            const hamburgerButton = document.querySelector('.mobile-menu-button');
+            
+            if (window.innerWidth > 1024) {
+                // Large screen: remove hamburger button if exists and ensure TOC is visible
+                if (hamburgerButton) {
+                    hamburgerButton.remove();
+                }
+                toc.classList.remove('open');
+            } else {
+                // Small screen: add hamburger button if not exists
+                if (!hamburgerButton) {
+                    const newButton = document.createElement('button');
+                    newButton.innerHTML = '<i class="fas fa-bars"></i>';
+                    newButton.className = 'mobile-menu-button fixed top-4 left-4 z-50 bg-primary text-white p-3 rounded-lg shadow-lg';
+                    newButton.onclick = toggleMobileMenu;
+                    document.body.appendChild(newButton);
+                }
+            }
+        }
+
+        // Initial setup
+        handleResize();
+        
+        // Add resize event listener
+        window.addEventListener('resize', handleResize);
+    </script>
+  
+
+</body></html>
